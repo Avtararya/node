@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 
 const profileController = {
   updatePersonalInfo: async (req, res) => {
-    const userId = req.user.id; // assuming you have user id in the request object
+    const userId = req.user.id;
     const { name, email, bio } = req.body;
 
     try {
@@ -19,7 +19,7 @@ const profileController = {
   },
 
   updatePhoto: async (req, res) => {
-    const userId = req.user.id; // assuming you have user id in the request object
+    const userId = req.user.id;
 
     try {
       const user = await User.findByIdAndUpdate(

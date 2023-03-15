@@ -1,6 +1,5 @@
 const City = require("../models/cityModel");
 
-// Get all cities
 exports.getAllCities = (req, res) => {
   City.find({}, (err, cities) => {
     if (err) {
@@ -12,7 +11,6 @@ exports.getAllCities = (req, res) => {
   });
 };
 
-// Get city by slug
 exports.getCityBySlug = (req, res) => {
   const slug = req.params.slug;
 
@@ -28,7 +26,6 @@ exports.getCityBySlug = (req, res) => {
   });
 };
 
-// Create city
 exports.createCity = (req, res) => {
   const city = new City({
     name: req.body.name,
@@ -47,7 +44,6 @@ exports.createCity = (req, res) => {
   });
 };
 
-// Update city
 exports.updateCity = (req, res) => {
   const slug = req.params.slug;
   const updates = {
@@ -71,7 +67,6 @@ exports.updateCity = (req, res) => {
   });
 };
 
-// Delete city
 exports.deleteCity = (req, res) => {
   const slug = req.params.slug;
 

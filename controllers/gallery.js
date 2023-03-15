@@ -3,7 +3,6 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 
-// Set storage engine for multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/gallery");
@@ -13,7 +12,6 @@ const storage = multer.diskStorage({
   },
 });
 
-// Initialize upload
 const upload = multer({
   storage: storage,
   limits: { fileSize: 10000000 }, // Max file size 10MB
@@ -22,13 +20,9 @@ const upload = multer({
   },
 }).array("images");
 
-// Check file type
 function checkFileType(file, cb) {
-  // Allowed file types
   const filetypes = /jpeg|jpg|png|gif/;
-  // Check extension
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  // Check mimetype
   const mimetype = filetypes.test(file.mimetype);
 
   if (extname && mimetype) {
@@ -39,7 +33,6 @@ function checkFileType(file, cb) {
 }
 
 exports.addImages = (req, res) => {
-  // Handle adding images to gallery
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
       console.error(err);
@@ -77,7 +70,6 @@ exports.addImages = (req, res) => {
 };
 
 exports.deleteImage = (req, res) => {
-  // Handle deleting image from gallery with the given id
   const id = req.params.id;
 
   Gallery.findById(id)
